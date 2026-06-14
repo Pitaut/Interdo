@@ -768,11 +768,7 @@ $interventions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     alert('Erreur de clôture : ' + json.error);
                 } else if (json.status === 'created_not_closed') {
                     const rdvId = json.rdv_id || 'inconnu';
-                    alert('Intervention créée avec succès (ID: ' + rdvId + '), mais non clôturée car les heures de forfait sont insuffisantes.\n\nNote: cette page affiche principalement les interventions clôturées.\nVous allez être redirigé vers l\'agenda pour retrouver ce rendez-vous.');
-                    if (json.rdv_id) {
-                        window.location.href = 'agenda.php?open_event=' + encodeURIComponent(json.rdv_id);
-                        return;
-                    }
+                    alert('Intervention créée avec succès (ID: ' + rdvId + '), mais non clôturée car les heures de forfait sont insuffisantes.\n\nVous restez sur la fiche client.');
                 } else {
                     alert('Intervention ajoutée et clôturée avec succès !');
                 }
