@@ -62,7 +62,7 @@ $interventions = $pdo->query("
     FROM rendez_vous rv
     LEFT JOIN clients c ON rv.client_id = c.id
     LEFT JOIN techniciens t ON rv.id_technicien = t.id
-    WHERE rv.statut != 'termine'
+    WHERE rv.statut NOT IN ('termine', 'annule')
     ORDER BY rv.date_rdv DESC, rv.heure_debut DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -207,9 +207,13 @@ $forfaits_impaye = $pdo->query("
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" onclick="cloturer(<?php echo $interv['id']; ?>)">
-                                        Clôturer
-                                    </button>
+                                    <?php if ($interv['statut'] !== 'annule'): ?>
+                                        <button class="btn btn-success" onclick="cloturer(<?php echo $interv['id']; ?>)">
+                                            Clôturer
+                                        </button>
+                                    <?php else: ?>
+                                        <span style="color:#999; font-size:0.9em;">Tracée uniquement dans l'historique</span>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

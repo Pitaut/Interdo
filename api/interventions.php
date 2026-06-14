@@ -201,6 +201,12 @@ function handleCloseForfait($pdo) {
         echo json_encode(['error' => 'Pas de client associé à ce rendez-vous']);
         exit;
     }
+
+    if (($rdv['statut'] ?? '') === 'annule') {
+        http_response_code(400);
+        echo json_encode(['error' => 'Une intervention annulée ne peut pas être clôturée avec décompte de forfait']);
+        exit;
+    }
     
     // Calculer la durée
     $heure_debut = $heure_debut_custom ?? $rdv['heure_debut'];
