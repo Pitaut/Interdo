@@ -1285,7 +1285,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_event_details' && isset($
                 eventDidMount: function(info) {
                     info.el.style.cursor = 'pointer';
                     
-                    // Appliquer un style différent pour les rendez-vous terminés
+                    // Appliquer un style différent pour les rendez-vous terminés ou annulés
                     if (info.event.extendedProps && info.event.extendedProps.statut === 'termine') {
                         // Ajouter une classe CSS pour les événements terminés
                         info.el.style.opacity = '0.5';
@@ -1296,6 +1296,16 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_event_details' && isset($
                         const titleEl = info.el.querySelector('.fc-event-title');
                         if (titleEl && !titleEl.textContent.startsWith('✓ ')) {
                             titleEl.textContent = '✓ ' + titleEl.textContent;
+                        }
+                    } else if (info.event.extendedProps && info.event.extendedProps.statut === 'annule') {
+                        info.el.style.opacity = '0.55';
+                        info.el.style.filter = 'grayscale(20%)';
+                        info.el.style.borderLeft = '4px solid #e53935';
+                        info.el.style.backgroundColor = '#fff5f5';
+
+                        const titleEl = info.el.querySelector('.fc-event-title');
+                        if (titleEl && !titleEl.textContent.startsWith('✕ ')) {
+                            titleEl.textContent = '✕ ' + titleEl.textContent;
                         }
                     }
                 },
@@ -2078,8 +2088,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_event_details' && isset($
                     // Gérer le bouton de clôture
                     const btnCloture = document.getElementById('btnClotureIntervention');
                     if (btnCloture) {
-                        // Afficher uniquement si le statut n'est pas 'termine' et qu'il y a un client
-                        if (data.statut === 'termine' || !data.client_id) {
+                        // Afficher uniquement si le statut n'est ni terminé ni annulé, et qu'il y a un client
+                        if (data.statut === 'termine' || data.statut === 'annule' || !data.client_id) {
                             btnCloture.style.display = 'none';
                         } else {
                             btnCloture.style.removeProperty('display');
