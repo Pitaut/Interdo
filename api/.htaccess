@@ -1,0 +1,30 @@
+# Activer la réécriture d'URL (optionnel)
+# Permet d'utiliser /api/events au lieu de /api/events.php
+
+# RewriteEngine On
+# RewriteBase /_Interdo/
+
+# Réécrire /api/events → /api/events.php
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^api/([a-z]+)$ api/$1.php [L,QSA]
+
+# Headers CORS (si nécessaire pour des appels depuis d'autres domaines)
+# Header set Access-Control-Allow-Origin "*"
+# Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+# Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Sécurité : empêcher l'accès direct aux fichiers de migration
+<FilesMatch "^(alter_|migrate_|database\.sql)">
+    Require all denied
+</FilesMatch>
+
+# Cache pour les fichiers statiques
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+</IfModule>
