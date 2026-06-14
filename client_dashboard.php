@@ -506,7 +506,9 @@ $interventions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <?php if (!empty($inter['est_cloturee'])): ?>
+                                        <?php if (($inter['rdv_statut'] ?? '') === 'annule'): ?>
+                                            <span class="badge badge-danger">Annulée</span>
+                                        <?php elseif (!empty($inter['est_cloturee'])): ?>
                                             <span class="badge badge-success">Clôturée</span>
                                         <?php else: ?>
                                             <span class="badge badge-warning">Non clôturée</span>
