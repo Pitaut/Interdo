@@ -1,25 +1,23 @@
-# Application Agenda Interdo
+# Interdo
+
+Application web PHP/MySQL de gestion d'agenda, d'interventions techniques, de forfaits et de clients.
 
 **Version**: 3.0  
-**Date**: 21 décembre 2025  
-**Stack**: PHP 8.3.14 / MySQL 9.1.0 / FullCalendar 6.1.15
+**Stack**: PHP 8.3.14 / MySQL 9.1.0 / FullCalendar 6.1.15  
+**Dépôt public**: [Pitaut/Interdo](https://github.com/Pitaut/Interdo)
 
----
+## Vue d'ensemble
 
-## 📋 Vue d'ensemble
+Interdo permet de :
+- Planifier et suivre des rendez-vous clients
+- Gérer les forfaits horaires avec bonus/malus
+- Facturer hors forfait de façon automatisée
+- Garder une traçabilité complète des interventions
+- Gérer les clients et les techniciens
+- Suivre des statistiques et des alertes clients à risque
+- Valider les clôtures avec signature électronique
 
-Application web de gestion d'agenda et d'interventions techniques permettant :
-- ✅ Planification et suivi des rendez-vous clients
-- ✅ Gestion des forfaits horaires avec système de bonus/malus
-- ✅ Facturation hors forfait automatisée
-- ✅ Traçabilité complète de toutes les interventions
-- ✅ Gestion des clients et techniciens
-- ✅ Statistiques et détection de clients à risque
-- ✅ Signatures électroniques pour validation
-
----
-
-## 🚀 Démarrage rapide
+## Démarrage rapide
 
 ### Prérequis
 - WAMP/XAMPP avec PHP 8.3+
@@ -644,9 +642,9 @@ Pour toute question ou problème :
 
 ---
 
-## 📄 Licence
+## Licence
 
-Propriétaire - Tous droits réservés
+Ce projet est distribué sous licence MIT. Voir [LICENSE](LICENSE).
 
 ---
 
